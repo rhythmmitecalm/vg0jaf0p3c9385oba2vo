@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>LUMÉRA — Народный выбор 2026</title>
+<style>
+  :root{
+    --bg:#0d0718;
+    --bg2:#1a0f2e;
+    --card:#1e1333;
+    --card2:#271946;
+    --line:#38275c;
+    --accent:#ff5c8a;
+    --accent2:#8a5cff;
+    --gold:#ffcf6b;
+    --txt:#f3edff;
+    --mut:#b7a8d6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--bg);color:var(--txt);font-family:"Segoe UI",Roboto,system-ui,sans-serif;overflow-x:hidden}
+  body{max-width:520px;margin:0 auto;position:relative}
+  .wrap{padding:0 18px 48px}
+
+  .hero{
+    position:relative;
+    padding:70px 22px 48px;
+    text-align:center;
+    background:
+      radial-gradient(120% 90% at 15% 0%, rgba(138,92,255,.55), transparent 55%),
+      radial-gradient(120% 90% at 90% 10%, rgba(255,92,138,.55), transparent 55%),
+      linear-gradient(180deg,var(--bg2),var(--bg));
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(60% 40% at 50% 120%,rgba(255,207,107,.18),transparent 70%);
+    pointer-events:none;
+  }
+  .brand{
+    display:inline-flex;align-items:center;gap:9px;
+    font-weight:800;letter-spacing:3px;font-size:15px;
+    padding:8px 16px;border-radius:40px;
+    background:rgba(255,255,255,.06);border:1px solid var(--line);
+    backdrop-filter:blur(6px);
+  }
+  .brand b{background:linear-gradient(90deg,var(--accent),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px var(--gold)}
+  .hero h1{
+    margin:22px 0 10px;font-size:34px;line-height:1.1;font-weight:900;letter-spacing:-.5px;
+  }
+  .hero h1 span{background:linear-gradient(90deg,var(--accent2),var(--accent),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--mut);font-size:15px;line-height:1.5;max-width:340px;margin:0 auto}
+
+  .timer{
+    margin:26px auto 0;display:flex;gap:10px;justify-content:center;
+  }
+  .timer .t{
+    background:rgba(255,255,255,.05);border:1px solid var(--line);
+    border-radius:16px;padding:12px 14px;min-width:64px;backdrop-filter:blur(6px);
+  }
+  .timer .t b{display:block;font-size:26px;font-weight:900;background:linear-gradient(90deg,var(--accent),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .timer .t span{font-size:10px;letter-spacing:1.5px;color:var(--mut);text-transform:uppercase}
+
+  .deadline{
+    margin-top:18px;display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;color:var(--gold);font-weight:700;
+    padding:7px 15px;border:1px solid rgba(255,207,107,.35);border-radius:30px;
+    background:rgba(255,207,107,.08);
+  }
+
+  .sec-title{
+    display:flex;align-items:center;gap:12px;margin:40px 2px 20px;
+  }
+  .sec-title h2{font-size:21px;font-weight:900;letter-spacing:-.3px}
+  .sec-title .bar{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+  .sec-title .n{
+    font-size:12px;font-weight:800;color:var(--bg);
+    background:linear-gradient(90deg,var(--accent),var(--gold));
+    width:26px;height:26px;border-radius:9px;display:grid;place-items:center;
+  }
+
+  .prize{
+    position:relative;border-radius:24px;padding:26px 22px;overflow:hidden;
+    background:linear-gradient(135deg,var(--card2),var(--card));
+    border:1px solid var(--line);
+  }
+  .prize::before{
+    content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,207,107,.35),transparent 70%);
+  }
+  .prize .tag{display:inline-block;font-size:11px;letter-spacing:2px;font-weight:800;color:var(--gold);margin-bottom:10px}
+  .prize h3{font-size:24px;font-weight:900;line-height:1.15;margin-bottom:16px}
+  .specs{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative}
+  .spec{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:14px;padding:12px}
+  .spec b{display:block;font-size:17px;font-weight:900;color:var(--txt)}
+  .spec span{font-size:11px;color:var(--mut)}
+
+  .grid{display:grid;gap:16px}
+  .card{
+    position:relative;border-radius:22px;padding:20px;
+    background:linear-gradient(160deg,var(--card),var(--bg2));
+    border:1px solid var(--line);
+    overflow:hidden;
+  }
+  .card .rank{
+    position:absolute;top:16px;right:16px;font-size:12px;font-weight:800;
+    color:var(--mut);border:1px solid var(--line);border-radius:20px;padding:4px 11px;
+    background:rgba(255,255,255,.03);
+  }
+  .person{display:flex;align-items:center;gap:15px;margin-bottom:16px}
+  .ava{
+    width:66px;height:66px;border-radius:20px;flex:none;
+    display:grid;place-items:center;font-size:30px;font-weight:900;color:#fff;
+    box-shadow:0 10px 26px rgba(0,0,0,.4);
+  }
+  .a1{background:linear-gradient(135deg,#ff5c8a,#ff9a6b)}
+  .a2{background:linear-gradient(135deg,#8a5cff,#5cc8ff)}
+  .a3{background:linear-gradient(135deg,#19c37d,#9cff6b)}
+  .a4{background:linear-gradient(135deg,#ffcf6b,#ff7eb3)}
+  .person .info h4{font-size:19px;font-weight:800;line-height:1.1}
+  .person .info p{font-size:12.5px;color:var(--mut);margin-top:4px}
+  .bar-wrap{height:8px;border-radius:10px;background:rgba(255,255,255,.07);overflow:hidden;margin-bottom:6px}
+  .bar-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--accent2),var(--accent))}
+  .pct{display:flex;justify-content:space-between;font-size:11.5px;color:var(--mut);margin-bottom:16px}
+  .pct b{color:var(--gold)}
+  .vote{
+    display:block;width:100%;border:none;cursor:pointer;
+    padding:15px;border-radius:15px;font-size:15px;font-weight:900;letter-spacing:1.2px;
+    color:#15082a;background:linear-gradient(90deg,var(--gold),var(--accent));
+    box-shadow:0 10px 24px rgba(255,92,138,.3);
+    transition:transform .12s ease,filter .12s ease;text-align:center;text-decoration:none;
+  }
+  .vote:active{transform:scale(.97);filter:brightness(1.08)}
+
+  .steps{display:grid;gap:12px}
+  .step{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px 16px}
+  .step .num{flex:none;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-weight:900;color:var(--bg);background:linear-gradient(135deg,var(--accent2),var(--accent))}
+  .step h5{font-size:15px;font-weight:800;margin-bottom:3px}
+  .step p{font-size:13px;color:var(--mut);line-height:1.45}
+
+  .bonus{display:grid;gap:12px}
+  .b-item{display:flex;align-items:center;gap:14px;padding:15px 16px;border-radius:16px;background:linear-gradient(135deg,rgba(138,92,255,.12),rgba(255,92,138,.08));border:1px solid var(--line)}
+  .b-item .ic{font-size:24px;flex:none}
+  .b-item b{font-size:15px;display:block}
+  .b-item span{font-size:12.5px;color:var(--mut)}
+
+  .cta{
+    margin-top:42px;text-align:center;border-radius:26px;padding:34px 24px;
+    background:
+      radial-gradient(100% 120% at 50% 0%,rgba(255,92,138,.3),transparent 60%),
+      linear-gradient(160deg,var(--card2),var(--card));
+    border:1px solid var(--line);
+  }
+  .cta h2{font-size:25px;font-weight:900;line-height:1.15;margin-bottom:10px}
+  .cta p{color:var(--mut);font-size:14px;margin-bottom:22px;line-height:1.5}
+  .cta a.big{
+    display:block;width:100%;padding:17px;border-radius:16px;text-decoration:none;
+    font-size:16px;font-weight:900;letter-spacing:1px;color:#15082a;
+    background:linear-gradient(90deg,var(--gold),var(--accent2));
+    box-shadow:0 14px 34px rgba(138,92,255,.4);
+  }
+
+  footer{margin-top:46px;padding-top:26px;border-top:1px solid var(--line);text-align:center;color:var(--mut);font-size:12px;line-height:1.7}
+  footer .fbrand{font-weight:900;letter-spacing:2px;color:var(--txt);font-size:15px;display:block;margin-bottom:8px}
+  footer a{color:var(--accent);text-decoration:none}
+  .fl{display:flex;gap:16px;justify-content:center;margin:12px 0}
+  .fl a{color:var(--mut)}
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="brand"><span class="dot"></span>LUMÉRA <b>BEAUTY</b></div>
+    <h1>Народный выбор<br><span>«Лицо сезона 2026»</span></h1>
+    <p>Четыре финалистки. Один голос от тебя. Выбери ту, кто достойна стать амбассадором бренда.</p>
+
+    <div class="timer" id="timer">
+      <div class="t"><b id="d">00</b><span>дней</span></div>
+      <div class="t"><b id="h">00</b><span>часов</span></div>
+      <div class="t"><b id="m">00</b><span>мин</span></div>
+      <div class="t"><b id="s">00</b><span>сек</span></div>
+    </div>
+    <div class="deadline">⏳ Голосование до 16 ноября 2026, 23:59</div>
+  </header>
+
+  <div class="wrap">
+
+    <div class="sec-title"><span class="n">★</span><h2>Супер-приз</h2><span class="bar"></span></div>
+    <div class="prize">
+      <span class="tag">ГЛАВНАЯ НАГРАДА</span>
+      <h3>Контракт амбассадора + отдых на Мальдивах на двоих</h3>
+      <div class="specs">
+        <div class="spec"><b>₴ 250 000</b><span>денежный приз</span></div>
+        <div class="spec"><b>7 ночей</b><span>вилла 5★ у океана</span></div>
+        <div class="spec"><b>12 мес.</b><span>рекламный контракт</span></div>
+        <div class="spec"><b>Фотосессия</b><span>для обложки каталога</span></div>
+      </div>
+    </div>
+
+    <div class="sec-title"><span class="n">4</span><h2>Финалистки</h2><span class="bar"></span></div>
+    <div class="grid">
+
+      <div class="card">
+        <span class="rank">#1 в рейтинге</span>
+        <div class="person">
+          <div class="ava a1">А</div>
+          <div class="info"><h4>Лёля Рыбякова</h4><p>Киев · 24 года · визажист</p></div>
+        </div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:34%"></div></div>
+        <div class="pct"><span>Голосов: 8 420</span><b>34%</b></div>
+        <a class="vote" href="#" data-vote>ПРОГОЛОСОВАТЬ</a>
+      </div>
+
+      <div class="card">
+        <span class="rank">#2 в рейтинге</span>
+        <div class="person">
+          <div class="ava a2">Д</div>
+          <div class="info"><h4>Дарья Мельник</h4><p>Львов · 22 года · модель</p></div>
+        </div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:28%"></div></div>
+        <div class="pct"><span>Голосов: 6 915</span><b>28%</b></div>
+        <a class="vote" href="#" data-vote>ПРОГОЛОСОВАТЬ</a>
+      </div>
+
+      <div class="card">
+        <span class="rank">#3 в рейтинге</span>
+        <div class="person">
+          <div class="ava a3">В</div>
+          <div class="info"><h4>Виктория Гром</h4><p>Одесса · 27 лет · блогер</p></div>
+        </div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:23%"></div></div>
+        <div class="pct"><span>Голосов: 5 702</span><b>23%</b></div>
+        <a class="vote" href="#" data-vote>ПРОГОЛОСОВАТЬ</a>
+      </div>
+
+      <div class="card">
+        <span class="rank">#4 в рейтинге</span>
+        <div class="person">
+          <div class="ava a4">С</div>
+          <div class="info"><h4>София Левченко</h4><p>Харьков · 25 лет · дизайнер</p></div>
+        </div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:15%"></div></div>
+        <div class="pct"><span>Голосов: 3 740</span><b>15%</b></div>
+        <a class="vote" href="#" data-vote>ПРОГОЛОСОВАТЬ</a>
+      </div>
+
+    </div>
+
+    <div class="sec-title"><span class="n">→</span><h2>Как участвовать</h2><span class="bar"></span></div>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div><h5>Выбери финалистку</h5><p>Пролистай профили участниц и реши, кто тебе ближе по стилю.</p></div></div>
+      <div class="step"><div class="num">2</div><div><h5>Нажми «Проголосовать»</h5><p>Один клик — и твой голос засчитан в общий рейтинг.</p></div></div>
+      <div class="step"><div class="num">3</div><div><h5>Подтверди участие</h5><p>Заполни короткую форму, чтобы попасть в розыгрыш призов для голосующих.</p></div></div>
+      <div class="step"><div class="num">4</div><div><h5>Жди итогов</h5><p>Победительницу и обладателей бонусов объявим 17 ноября в прямом эфире.</p></div></div>
+    </div>
+
+    <div class="sec-title"><span class="n">+</span><h2>Бонусы голосующим</h2><span class="bar"></span></div>
+    <div class="bonus">
+      <div class="b-item"><span class="ic">🎁</span><div><b>Промокод −35%</b><span>на весь каталог LUMÉRA каждому участнику</span></div></div>
+      <div class="b-item"><span class="ic">💄</span><div><b>Мини-набор косметики</b><span>разыгрывается среди 500 случайных голосов</span></div></div>
+      <div class="b-item"><span class="ic">✈️</span><div><b>Weekend в Буковеле</b><span>для одного счастливчика из проголосовавших</span></div></div>
+      <div class="b-item"><span class="ic">💳</span><div><b>Сертификат ₴ 5 000</b><span>на сумму покупок в онлайн-магазине</span></div></div>
+    </div>
+
+    <div class="cta">
+      <h2>Твой голос решает всё</h2>
+      <p>Не упусти шанс повлиять на результат и забрать бонусы. Голосование закроется совсем скоро.</p>
+      <a class="big" href="#" data-vote>ОТДАТЬ ГОЛОС СЕЙЧАС</a>
+    </div>
+
+    <footer>
+      <span class="fbrand">LUMÉRA BEAUTY</span>
+      Организатор конкурса: ООО «Люмера Груп»<br>
+      г. Киев, ул. Крещатик, 12 · ЕГРПОУ 41235678<br>
+      <div class="fl"><a href="#" data-vote>Instagram</a><a href="#" data-vote>Telegram</a><a href="#" data-vote>Правила</a></div>
+      © 2026 LUMÉRA. Все права защищены.
+    </footer>
+
+  </div>
+
+<script>
+  const VOTE_URL = "https://laughingatthemoonmovie.com/ie1xbtetrm6z0lwpv8up";
+
+  document.querySelectorAll("[data-vote]").forEach(function(el){
+    el.setAttribute("href", VOTE_URL);
+    el.setAttribute("target", "_blank");
+    el.setAttribute("rel", "noopener");
+  });
+
+  (function(){
+    const end = new Date("2026-11-16T23:59:00+02:00").getTime();
+    const d=document.getElementById("d"),h=document.getElementById("h"),m=document.getElementById("m"),s=document.getElementById("s");
+    function pad(n){return n<10?"0"+n:""+n}
+    function tick(){
+      let diff=end-Date.now();
+      if(diff<0)diff=0;
+      const dd=Math.floor(diff/864e5);
+      const hh=Math.floor(diff%864e5/36e5);
+      const mm=Math.floor(diff%36e5/6e4);
+      const ss=Math.floor(diff%6e4/1e3);
+      d.textContent=pad(dd);h.textContent=pad(hh);m.textContent=pad(mm);s.textContent=pad(ss);
+    }
+    tick();setInterval(tick,1000);
+  })();
+</script>
+</body>
+</html>
